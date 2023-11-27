@@ -3,8 +3,6 @@ const { get } = require("express/lib/response");
 
 const app = express();
 
-const port = 5000;
-
 const movies = [
   {
     id: 1,
@@ -53,7 +51,7 @@ const film = (req, res) => {
   if (idFilm) {
     res.status(200).json(idFilm);
   } else {
-    res.send("Not Found");
+    res.sendStatus(404);
   }
 };
 
@@ -71,10 +69,4 @@ const WelcomeName = (req, res) => {
 
 app.get("/users/:name", WelcomeName);
 
-app.listen(port, (err) => {
-  if (err) {
-    console.error("Something bad happened");
-  } else {
-    console.log(`Server is listening on ${port}`);
-  }
-});
+module.exports = app;
